@@ -20,6 +20,8 @@ namespace Assets.Models
         public event Action<int, int> ScoresCalculated;
 
         public event Action GameRestarted;
+
+        public event Action MovePassed;
         public GameManager()
         {
             field = new Field();
@@ -38,6 +40,7 @@ namespace Assets.Models
             MoveMade?.Invoke(field.Cells);
             SwitchPlayer();
             AvailableCellsCalculated?.Invoke(GetAvailableCells());
+            CalculatePlayersScore();
             if (field.isFull())
             {
                 FinishGame();
@@ -45,7 +48,11 @@ namespace Assets.Models
             }
 
             if (GetAvailableCells().Count == 0)
+            {
                 SwitchPlayer();
+                MovePassed?.Invoke();
+            }
+                
         }
         public void RestartGame(Tuple<int, int> blackHoleCoords)
         {

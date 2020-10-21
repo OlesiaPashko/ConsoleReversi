@@ -7,7 +7,7 @@ public class Field
 
     public Field()
     {
-        int size = 8;
+        int size = 6;
         Cells = new List<List<Cell>>(size);
         for (int i = 0; i < size; i++)
         {
@@ -27,10 +27,10 @@ public class Field
 
     private void SetInitialFieldState()
     {
+        Cells[2][2].State = CellState.White;
         Cells[3][3].State = CellState.White;
-        Cells[4][4].State = CellState.White;
-        Cells[3][4].State = CellState.Black;
-        Cells[4][3].State = CellState.Black;
+        Cells[2][3].State = CellState.Black;
+        Cells[3][2].State = CellState.Black;
     }
 
     public void SetCell(CellState playerColor, Tuple<int, int> coords)

@@ -13,9 +13,31 @@ namespace ConsoleOutput
             gameManager.MoveMade += DrawField;
             gameManager.GameStarted += SetCells;
             gameManager.AvailableCellsCalculated += DrawAvailable;
-           //gameManager.GameFinished;
-           //gameManager.ScoresCalculated;
+            gameManager.GameFinished += ShowFinish;
+            gameManager.ScoresCalculated += ShowScores;
+            gameManager.MovePassed += ShowPassMessage;
            //gameManager.GameRestarted;
+        }
+
+        public void ShowPassMessage()
+        {
+            Console.WriteLine("There is no available cells. Your move was passed");
+        }
+
+        public void ShowFinish(int firstPlayerScore, int secondPlayerScore)
+        {
+            Console.WriteLine($"-----------------Game over --------------------");
+            if (firstPlayerScore > secondPlayerScore)
+                Console.WriteLine("SECOND PLAYER WON");
+            else if (secondPlayerScore > firstPlayerScore)
+                Console.WriteLine("FIRST PLAYER WON");
+            else
+                Console.WriteLine("TIE");
+        }
+
+        public void ShowScores(int firstPlayerScore, int secondPlayerScore)
+        {
+            Console.WriteLine($"First player score - {firstPlayerScore}; Second player score - {secondPlayerScore}");
         }
 
         public void SetCells(List<List<Cell>> cells)

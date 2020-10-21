@@ -2,8 +2,6 @@ C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\obj\Debug\netcoreap
 C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\obj\Debug\netcoreapp3.1\Linker.AssemblyInfoInputs.cache
 C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\obj\Debug\netcoreapp3.1\Linker.AssemblyInfo.cs
 C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\obj\Debug\netcoreapp3.1\Linker.csproj.CoreCompileInputs.cache
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\bin\Debug\netcoreapp3.1\ConsoleInput.exe
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\bin\Debug\netcoreapp3.1\ConsoleOutput.exe
 C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\bin\Debug\netcoreapp3.1\Linker.exe
 C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\bin\Debug\netcoreapp3.1\Linker.deps.json
 C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Linker\bin\Debug\netcoreapp3.1\Linker.runtimeconfig.json
