@@ -28,7 +28,7 @@ namespace Assets.Models
         public List<Tuple<int, int>> GetAvailableCells()
         {
             var availableCells = field.GetAvailableCells(currentPlayerColor);
-            AvailableCellsCalculated?.Invoke(availableCells);
+            //AvailableCellsCalculated?.Invoke(availableCells);
             return availableCells;
         }
 
@@ -36,8 +36,8 @@ namespace Assets.Models
         {
             field.SetCell(currentPlayerColor, coolds);
             MoveMade?.Invoke(field.Cells);
-
             SwitchPlayer();
+            AvailableCellsCalculated?.Invoke(GetAvailableCells());
             if (field.isFull())
             {
                 FinishGame();
@@ -47,21 +47,25 @@ namespace Assets.Models
             if (GetAvailableCells().Count == 0)
                 SwitchPlayer();
         }
-        public void RestartGame()
+        public void RestartGame(Tuple<int, int> blackHoleCoords)
         {
             field = new Field();
+            field.SetBlackHole(blackHoleCoords);
             GameRestarted?.Invoke();
         }
 
-        public void StartGame(CellState firstPlayerColor)
+        public void StartGame(CellState firstPlayerColor, Tuple<int, int> blackHoleCoords)
         {
             this.firstPlayerColor = firstPlayerColor;
             currentPlayerColor = firstPlayerColor;
             secondPlayerColor = Field.GetOppositeColor(firstPlayerColor);
 
+            field.SetBlackHole(blackHoleCoords);
+
             GameStarted?.Invoke(field.Cells);
 
-            GetAvailableCells();
+            var availableCells = GetAvailableCells();
+            AvailableCellsCalculated?.Invoke(availableCells);
         }
 
         public void CalculatePlayersScore()

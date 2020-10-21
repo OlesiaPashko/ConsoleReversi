@@ -4,7 +4,8 @@ public enum CellState
 {
     Black,
     White,
-    Empty
+    Empty,
+    BlackHole
 }
 public class Cell
 {

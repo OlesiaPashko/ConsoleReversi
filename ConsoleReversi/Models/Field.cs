@@ -20,6 +20,11 @@ public class Field
         SetInitialFieldState();
     }
 
+    public void SetBlackHole(Tuple<int, int> coords)
+    {
+        Cells[coords.Item1][coords.Item2].State = CellState.BlackHole;
+    }
+
     private void SetInitialFieldState()
     {
         Cells[3][3].State = CellState.White;

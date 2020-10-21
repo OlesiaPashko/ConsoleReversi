@@ -1,0 +1,16 @@
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\ConsoleOutput.exe
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\ConsoleOutput.deps.json
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\ConsoleOutput.runtimeconfig.json
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\ConsoleOutput.runtimeconfig.dev.json
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\ConsoleOutput.dll
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\ConsoleOutput.pdb
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\Models.dll
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\bin\Debug\netcoreapp3.1\Models.pdb
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.csprojAssemblyReference.cache
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.AssemblyInfoInputs.cache
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.AssemblyInfo.cs
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.csproj.CopyComplete
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.dll
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.pdb
+C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\ConsoleOutput\obj\Debug\netcoreapp3.1\ConsoleOutput.genruntimeconfig.cache

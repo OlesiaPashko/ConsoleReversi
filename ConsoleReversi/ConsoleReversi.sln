@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleOutput", "ConsoleOutput\ConsoleOutput.csproj", "{B14220F2-9C91-40E3-9E2A-3BB1117F679A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleInput", "ConsoleInput\ConsoleInput.csproj", "{599DA759-6214-411B-894B-EBF915CF36AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleInput", "ConsoleInput\ConsoleInput.csproj", "{599DA759-6214-411B-894B-EBF915CF36AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linker", "Linker\Linker.csproj", "{7AC3BFD7-F380-46DD-AC26-8CA6A5C9596C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{599DA759-6214-411B-894B-EBF915CF36AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{599DA759-6214-411B-894B-EBF915CF36AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{599DA759-6214-411B-894B-EBF915CF36AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC3BFD7-F380-46DD-AC26-8CA6A5C9596C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC3BFD7-F380-46DD-AC26-8CA6A5C9596C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC3BFD7-F380-46DD-AC26-8CA6A5C9596C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC3BFD7-F380-46DD-AC26-8CA6A5C9596C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
