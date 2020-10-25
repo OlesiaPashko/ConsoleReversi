@@ -9,12 +9,12 @@ public enum CellState
 }
 public class Cell
 {
-    public CellState State;
+    public CellState State { get; set; }
     public void ChangeColor()
     {
         if (State == CellState.Black)
             State = CellState.White;
-        else
+        else if(State == CellState.White)
             State = CellState.Black;
     }
 
