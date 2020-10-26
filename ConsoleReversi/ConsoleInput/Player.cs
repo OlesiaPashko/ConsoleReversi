@@ -26,7 +26,7 @@ namespace ConsoleInput
 
         public string CoordsToString(Tuple<int, int> coords)
         {
-            return firstLetters[coords.Item1].ToString() + secondLetters[coords.Item2];
+            return firstLetters[coords.Item2].ToString() + secondLetters[coords.Item1];
         }
     }
 }

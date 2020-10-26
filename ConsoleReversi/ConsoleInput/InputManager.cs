@@ -34,9 +34,7 @@ namespace ConsoleInput
             }
             while (true)
             {
-                Console.WriteLine("tralala");
                 player.MakeRandomMove();
-                Console.WriteLine("tralala 2");
                 MakeMove();
             }
         }
@@ -67,7 +65,7 @@ namespace ConsoleInput
         {
             List<Tuple<int,int>> availableCells = gameManager.GetAvailableCells();
             string move;
-            Tuple<int, int> moveCoords;
+            Tuple<int, int> moveCoords = new Tuple<int, int>(-1,-1);
             do
             {
                 //Console.WriteLine("Please, make move");
@@ -75,19 +73,24 @@ namespace ConsoleInput
                 move = move.Trim().ToLower();
                 if (!IsCorrectMove(move))
                 {
+                    if (move == "pass")
+                    {
+                        gameManager.SwitchPlayer();
+                        break;
+                    }
                     Console.WriteLine("Input is incorrect. Correct input is like A3 or b2");
                     continue;
                 }
                 moveCoords = ParseCoords(move);
                 if (availableCells.Contains(moveCoords))
                 {
+                    gameManager.MakeMove(moveCoords);
                     break;
                 }
-                Console.WriteLine("This cell isn`t available");
+                //Console.WriteLine("This cell isn`t available");
             }
             while (true);
-            Console.WriteLine("There");
-            gameManager.MakeMove(moveCoords);
+            
             return moveCoords;
         }
 
@@ -101,6 +104,7 @@ namespace ConsoleInput
 
         public Tuple<int,int> ParseCoords(string coords)
         {
+            coords = coords.ToLower().Trim();
             int column = firstLetters.FindIndex(x => x == coords[0]);
             int row = secondLetters.FindIndex(x => x == coords[1]);
             return new Tuple<int, int>(row, column);

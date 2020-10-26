@@ -52,7 +52,7 @@ namespace Models
                 SwitchPlayer();
                 MovePassed?.Invoke();
             }
-                
+            field = new Field(cells);
         }
         public void RestartGame(Tuple<int, int> blackHoleCoords)
         {
@@ -98,7 +98,7 @@ namespace Models
             GameFinished?.Invoke(firstPlayerCellsCount, secondPlayerCellsCount);
         }
 
-        private void SwitchPlayer()
+        public void SwitchPlayer()
         {
             currentPlayerColor = currentPlayerColor == firstPlayerColor ? secondPlayerColor : firstPlayerColor;
         }
