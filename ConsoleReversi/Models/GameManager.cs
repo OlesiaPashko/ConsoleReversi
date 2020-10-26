@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets.Models
+namespace Models
 {
     public class GameManager
     {
@@ -29,21 +29,21 @@ namespace Assets.Models
 
         public List<Tuple<int, int>> GetAvailableCells()
         {
-            var availableCells = field.GetAvailableCells(currentPlayerColor);
+            var availableCells = FieldHandler.GetAvailableCells(currentPlayerColor, field.Cells);
             //AvailableCellsCalculated?.Invoke(availableCells);
             return availableCells;
         }
 
         public void MakeMove(Tuple<int, int> coolds)
         {
-            field.SetCell(currentPlayerColor, coolds);
-            MoveMade?.Invoke(field.Cells);
+            List<List<Cell>> cells = FieldHandler.SetCell(currentPlayerColor, coolds, field.Cells);
+            MoveMade?.Invoke(cells);
             SwitchPlayer();
             AvailableCellsCalculated?.Invoke(GetAvailableCells());
-            CalculatePlayersScore();
-            if (field.isFull())
+            CalculatePlayersScore(cells);
+            if (FieldHandler.isFull(cells))
             {
-                FinishGame();
+                FinishGame(cells);
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace Assets.Models
         {
             this.firstPlayerColor = firstPlayerColor;
             currentPlayerColor = firstPlayerColor;
-            secondPlayerColor = Field.GetOppositeColor(firstPlayerColor);
+            secondPlayerColor = FieldHandler.GetOppositeColor(firstPlayerColor);
 
             field.SetBlackHole(blackHoleCoords);
 
@@ -75,15 +75,15 @@ namespace Assets.Models
             AvailableCellsCalculated?.Invoke(availableCells);
         }
 
-        public void CalculatePlayersScore()
+        public void CalculatePlayersScore(List<List<Cell>> cells)
         {
-            ScoresCalculated?.Invoke(field.CountCells(firstPlayerColor), field.CountCells(secondPlayerColor));
+            ScoresCalculated?.Invoke(FieldHandler.CountCells(firstPlayerColor, cells), FieldHandler.CountCells(secondPlayerColor, cells));
         }
 
-        public void FinishGame()
+        public void FinishGame(List<List<Cell>> cells)
         {
-            int firstPlayerCellsCount = field.CountCells(firstPlayerColor);
-            int secondPlayerCellsCount = field.CountCells(secondPlayerColor);
+            int firstPlayerCellsCount = FieldHandler.CountCells(firstPlayerColor, cells);
+            int secondPlayerCellsCount = FieldHandler.CountCells(secondPlayerColor, cells);
             GameFinished?.Invoke(firstPlayerCellsCount, secondPlayerCellsCount);
         }
 

@@ -1,6 +1,6 @@
-﻿using Assets.Models;
-using ConsoleInput;
+﻿using ConsoleInput;
 using ConsoleOutput;
+using Models;
 using System;
 
 namespace Linker

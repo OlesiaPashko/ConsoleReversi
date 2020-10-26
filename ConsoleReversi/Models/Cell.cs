@@ -1,26 +1,28 @@
 ﻿using System;
 
-public enum CellState
+namespace Models
+{
+    public enum CellState
 {
     Black,
     White,
     Empty,
     BlackHole
 }
-public class Cell
-{
-    public CellState State { get; set; }
-    public void ChangeColor()
+    public class Cell
     {
-        if (State == CellState.Black)
-            State = CellState.White;
-        else if(State == CellState.White)
-            State = CellState.Black;
-    }
+        public CellState State { get; set; }
+        public void ChangeColor()
+        {
+            if (State == CellState.Black)
+                State = CellState.White;
+            else if (State == CellState.White)
+                State = CellState.Black;
+        }
 
-    public Cell(CellState state)
-    {
-        this.State = state;
+        public Cell(CellState state)
+        {
+            this.State = state;
+        }
     }
-
 }
