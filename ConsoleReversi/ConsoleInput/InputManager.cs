@@ -19,21 +19,58 @@ namespace ConsoleInput
 
         public void StartGame()
         {
-            gameManager.StartGame(CellState.Black, new Tuple<int, int>(1, 1));
+            Player player = new Player(gameManager);
+            Tuple<int,int> blackHole = GetBlackHole();
+            CellState color = GetColor();
+            if (color == CellState.White)
+            {
+                //Console.WriteLine("i moves white");
+                gameManager.StartGame(blackHole, MakeMove());
+            }
+            else
+            {
+                //Console.WriteLine("i moves black");
+                gameManager.StartGame(blackHole);
+            }
             while (true)
             {
+                Console.WriteLine("tralala");
+                player.MakeRandomMove();
+                Console.WriteLine("tralala 2");
                 MakeMove();
             }
         }
 
-        public void MakeMove()
+        public Tuple<int, int> GetBlackHole()
+        {
+            //Console.WriteLine("Input Black Hole coords");
+            return ParseCoords(Console.ReadLine());
+        }
+
+        public CellState GetColor()
+        {
+            //Console.WriteLine("Input color");
+            string color = Console.ReadLine();
+            //Console.WriteLine(color);
+            if(color == "white") 
+            {
+                return CellState.White;
+            }
+            else if(color == "black")
+            {
+                return CellState.Black;
+            }
+            return CellState.Black;
+        }
+
+        public Tuple<int,int> MakeMove()
         {
             List<Tuple<int,int>> availableCells = gameManager.GetAvailableCells();
             string move;
             Tuple<int, int> moveCoords;
             do
             {
-                Console.WriteLine("Please, make move");
+                //Console.WriteLine("Please, make move");
                 move = Console.ReadLine();
                 move = move.Trim().ToLower();
                 if (!IsCorrectMove(move))
@@ -49,7 +86,9 @@ namespace ConsoleInput
                 Console.WriteLine("This cell isn`t available");
             }
             while (true);
+            Console.WriteLine("There");
             gameManager.MakeMove(moveCoords);
+            return moveCoords;
         }
 
 
@@ -66,9 +105,5 @@ namespace ConsoleInput
             int row = secondLetters.FindIndex(x => x == coords[1]);
             return new Tuple<int, int>(row, column);
         }
-        //public void SetBlackHole()
-        //{
-        //    _gameManager.SetBlackHole(new Tuple<int, int>(1, 1));
-        //}
     }
 }

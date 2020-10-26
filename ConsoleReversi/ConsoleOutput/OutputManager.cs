@@ -10,12 +10,12 @@ namespace ConsoleOutput
         private List<List<Cell>> cells;
         public void ListenTo(GameManager gameManager)
         {
-            gameManager.MoveMade += DrawField;
+            /*gameManager.MoveMade += DrawField;
             gameManager.GameStarted += SetCells;
             gameManager.AvailableCellsCalculated += DrawAvailable;
             gameManager.GameFinished += ShowFinish;
             gameManager.ScoresCalculated += ShowScores;
-            gameManager.MovePassed += ShowPassMessage;
+            gameManager.MovePassed += ShowPassMessage;*/
            //gameManager.GameRestarted;
         }
 

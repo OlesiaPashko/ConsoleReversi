@@ -5,8 +5,8 @@ namespace Models
 {
     public class GameManager
     {
-        private CellState firstPlayerColor;
-        private CellState secondPlayerColor;
+        private CellState firstPlayerColor = CellState.Black;
+        private CellState secondPlayerColor = CellState.White;
         private CellState currentPlayerColor;
         Field field;
         public event Action<List<List<Cell>>> MoveMade;
@@ -61,11 +61,9 @@ namespace Models
             GameRestarted?.Invoke();
         }
 
-        public void StartGame(CellState firstPlayerColor, Tuple<int, int> blackHoleCoords)
+        public void StartGame(Tuple<int, int> blackHoleCoords)
         {
-            this.firstPlayerColor = firstPlayerColor;
             currentPlayerColor = firstPlayerColor;
-            secondPlayerColor = FieldHandler.GetOppositeColor(firstPlayerColor);
 
             field.SetBlackHole(blackHoleCoords);
 
@@ -73,6 +71,19 @@ namespace Models
 
             var availableCells = GetAvailableCells();
             AvailableCellsCalculated?.Invoke(availableCells);
+        }
+
+        public void StartGame(Tuple<int, int> blackHoleCoords, Tuple<int, int> firstMove)
+        {
+            currentPlayerColor = firstPlayerColor;
+
+            field.SetBlackHole(blackHoleCoords);
+
+            GameStarted?.Invoke(field.Cells);
+
+            var availableCells = GetAvailableCells();
+            AvailableCellsCalculated?.Invoke(availableCells);
+            MakeMove(firstMove);
         }
 
         public void CalculatePlayersScore(List<List<Cell>> cells)
