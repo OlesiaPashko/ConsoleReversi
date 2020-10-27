@@ -36,6 +36,11 @@ namespace Models
 
         public void MakeMove(Tuple<int, int> coolds)
         {
+            //Console.WriteLine("In GameManager.MakeMove()");
+            if (GetAvailableCells().Count == 0)
+            {
+                Pass();
+            }
             List<List<Cell>> cells = FieldHandler.SetCell(currentPlayerColor, coolds, field.Cells);
             MoveMade?.Invoke(cells);
             SwitchPlayer();
@@ -45,12 +50,6 @@ namespace Models
             {
                 FinishGame(cells);
                 return;
-            }
-
-            if (GetAvailableCells().Count == 0)
-            {
-                SwitchPlayer();
-                MovePassed?.Invoke();
             }
             field = new Field(cells);
         }
@@ -97,7 +96,12 @@ namespace Models
             int secondPlayerCellsCount = FieldHandler.CountCells(secondPlayerColor, cells);
             GameFinished?.Invoke(firstPlayerCellsCount, secondPlayerCellsCount);
         }
-
+        
+        public void Pass()
+        {
+            SwitchPlayer();
+            MovePassed?.Invoke();
+        }
         public void SwitchPlayer()
         {
             currentPlayerColor = currentPlayerColor == firstPlayerColor ? secondPlayerColor : firstPlayerColor;

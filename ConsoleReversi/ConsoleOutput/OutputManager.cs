@@ -14,14 +14,14 @@ namespace ConsoleOutput
             gameManager.GameStarted += SetCells;
             gameManager.AvailableCellsCalculated += DrawAvailable;
             gameManager.GameFinished += ShowFinish;
-            gameManager.ScoresCalculated += ShowScores;
-            gameManager.MovePassed += ShowPassMessage;*/
+            gameManager.ScoresCalculated += ShowScores;*/
+            gameManager.MovePassed += ShowPassMessage;
            //gameManager.GameRestarted;
         }
 
         public void ShowPassMessage()
         {
-            Console.WriteLine("There is no available cells. Your move was passed");
+            Console.WriteLine("pass");
         }
 
         public void ShowFinish(int firstPlayerScore, int secondPlayerScore)

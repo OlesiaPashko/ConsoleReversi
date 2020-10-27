@@ -18,6 +18,14 @@ namespace ConsoleInput
         public void MakeRandomMove()
         {
             List<Tuple<int, int>> availableCells = gameManager.GetAvailableCells();
+
+            //Console.WriteLine(availableCells.Count);
+            if (availableCells.Count == 0)
+            {
+                gameManager.Pass();
+                return;
+            }
+            
             Random r = new Random();
             Tuple<int, int> move = availableCells[r.Next(0, availableCells.Count)];
             Console.WriteLine(CoordsToString(move));

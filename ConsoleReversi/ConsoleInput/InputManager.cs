@@ -34,7 +34,10 @@ namespace ConsoleInput
             }
             while (true)
             {
+                //Console.WriteLine("First player makes move");
                 player.MakeRandomMove();
+                //Console.WriteLine("Second player makes move");
+                //player.MakeRandomMove();
                 MakeMove();
             }
         }
