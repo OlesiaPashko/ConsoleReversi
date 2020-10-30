@@ -15,6 +15,7 @@ namespace ConsoleOutput
             gameManager.AvailableCellsCalculated += DrawAvailable;
             gameManager.GameFinished += ShowFinish;
             gameManager.ScoresCalculated += ShowScores;*/
+
             gameManager.MovePassed += ShowPassMessage;
            //gameManager.GameRestarted;
         }
