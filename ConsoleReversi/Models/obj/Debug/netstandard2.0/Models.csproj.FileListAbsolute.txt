@@ -1,9 +1,0 @@
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\bin\Debug\netstandard2.0\Models.deps.json
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\bin\Debug\netstandard2.0\Models.dll
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\bin\Debug\netstandard2.0\Models.pdb
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\obj\Debug\netstandard2.0\Models.csprojAssemblyReference.cache
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\obj\Debug\netstandard2.0\Models.AssemblyInfoInputs.cache
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\obj\Debug\netstandard2.0\Models.AssemblyInfo.cs
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\obj\Debug\netstandard2.0\Models.csproj.CoreCompileInputs.cache
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\obj\Debug\netstandard2.0\Models.dll
-C:\Users\User\Documents\ConsoleReversi\ConsoleReversi\Models\obj\Debug\netstandard2.0\Models.pdb
