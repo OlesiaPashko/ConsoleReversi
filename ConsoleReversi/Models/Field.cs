@@ -8,18 +8,6 @@ namespace Models
     {
         public List<List<Cell>> Cells { get; private set; }
 
-        private List<Tuple<int, int>> directions = new List<Tuple<int, int>>()
-    {
-         new Tuple<int, int>(-1, -1),
-         new Tuple<int, int>(-1, 0),
-         new Tuple<int, int>(-1, 1),
-         new Tuple<int, int>(0, -1),
-         new Tuple<int, int>(0, 1),
-         new Tuple<int, int>(1, -1),
-         new Tuple<int, int>(1, 0),
-         new Tuple<int, int>(1, 1)
-     };
-
         public Field()
         {
             int size = 8;

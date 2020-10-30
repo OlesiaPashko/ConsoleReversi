@@ -35,24 +35,13 @@ namespace Models
 
         public void UndoMove(List<List<Cell>> cellsBeforeMove)
         {
-            /*Console.WriteLine("In undo");
-            foreach(var row in cellsBeforeMove)
-            {
-                foreach(var cell in row)
-                {
-                    Console.Write(cell.State + " ");
-                }
-                Console.WriteLine();
-            }*/
             field = new Field(cellsBeforeMove);
             SwitchPlayer();
-            //AvailableCellsCalculated(GetAvailableCells());
         }
 
         public List<Tuple<int, int>> GetAvailableCells()
         {
             var availableCells = FieldHandler.GetAvailableCells(currentPlayerColor, field.Cells);
-            //AvailableCellsCalculated?.Invoke(availableCells);
             return availableCells;
         }
 
@@ -70,10 +59,8 @@ namespace Models
 
         public void MakeMove(Tuple<int, int> coolds)
         {
-            //Console.WriteLine("In GameManager.MakeMove()");
             if (GetAvailableCells().Count == 0)
             {
-                //Console.WriteLine("---------------Pass in GameManager.MakeMove()-----------------");
                 Pass();
             }
             else
@@ -141,6 +128,12 @@ namespace Models
             passedMovesCount += 1;
             SwitchPlayer();
             MovePassed?.Invoke();
+        }
+
+        public void PassWithoutMassage()
+        {
+            passedMovesCount += 1;
+            SwitchPlayer();
         }
         public void SwitchPlayer()
         {

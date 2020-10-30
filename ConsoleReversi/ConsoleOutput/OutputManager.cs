@@ -17,7 +17,6 @@ namespace ConsoleOutput
             gameManager.ScoresCalculated += ShowScores;*/
 
             gameManager.MovePassed += ShowPassMessage;
-           //gameManager.GameRestarted;
         }
 
         public void ShowPassMessage()

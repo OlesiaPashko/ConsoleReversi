@@ -9,13 +9,6 @@ namespace Linker
     {
         static void Main(string[] args)
         {
-            /*CellsDrawer view = GetComponent<CellsDrawer>();
-            CellsController cellsController = GetComponent<CellsController>();
-            GameManager gameManager = new GameManager();
-            cellsController.GameManager = gameManager;
-            view.ListenTo(gameManager);
-            cellsController.StartGame();*/
-
             OutputManager outputManager = new OutputManager();
             GameManager gameManager = new GameManager();
             InputManager inputManager = new InputManager(gameManager);

@@ -29,12 +29,9 @@ namespace ConsoleInput
         {
             List<Tuple<int, int>> availableCells = gameManager.GetAvailableCells();
 
-            //Console.WriteLine(availableCells.Count);
             if (availableCells.Count == 0)
             {
-                //  Console.WriteLine("------------------Pass in Player.MakeMove()-----------------------------------");
                 gameManager.Pass();
-                //Console.WriteLine("pass");
                 return;
             }
             Tuple<int, int> bestMove = availableCells[0];
@@ -43,7 +40,7 @@ namespace ConsoleInput
             {
                 List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
                 gameManager.MakeMove(move);
-                int score = MiniMax(3, int.MinValue, int.MaxValue, true);
+                int score = MiniMax(5, int.MinValue, int.MaxValue, true);
                 if (score < bestScore)
                 {
                     bestScore = score;
@@ -54,7 +51,6 @@ namespace ConsoleInput
 
             }
 
-            //Console.WriteLine("Move " + move.Item1 + "   " + move.Item2);
             Console.WriteLine(CoordsToString(bestMove));
             gameManager.MakeMove(bestMove);
         }
@@ -94,15 +90,13 @@ namespace ConsoleInput
                 if (availableMoves.Count == 0)
                 {
                     List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
-                    gameManager.passedMovesCount += 1;
-                    gameManager.SwitchPlayer();
+                    gameManager.PassWithoutMassage();
                     int score = MiniMax(depth-1, alpha, beta, false);
                     bestScore = GetMin(score, bestScore);
                     gameManager.UndoMove(cellsBeforeMove);
                 }
                 else
                 {
-                    //Console.WriteLine(availableMoves.Count);
                     foreach (var move in availableMoves)
                     {
                         List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
@@ -126,15 +120,13 @@ namespace ConsoleInput
                 if (availableMoves.Count == 0)
                 {
                     List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
-                    gameManager.passedMovesCount += 1;
-                    gameManager.SwitchPlayer();
+                    gameManager.PassWithoutMassage();
                     int score = MiniMax(depth - 1, alpha, beta, true);
                     bestScore = GetMax(score, bestScore);
                     gameManager.UndoMove(cellsBeforeMove);
                 }
                 else
                 {
-                    //Console.WriteLine(availableMoves.Count);
                     foreach (var move in availableMoves)
                     {
                         List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
@@ -153,110 +145,7 @@ namespace ConsoleInput
             }
         }
 
-        /*public int Min(int depth, int beta, int alpha)
-        {
-            //Console.WriteLine("In min");
-            //Console.WriteLine(depth);
-            if (gameManager.IsGameFinished())
-            {
-                bool isFirstPlayerWinner = gameManager.IsFirstPlayerWon();
-                if ((isFirst && isFirst) || (!isFirst && !isFirstPlayerWinner))
-                {
-                    return int.MaxValue;
-                }
-                return int.MinValue;
-            }
-            else if (depth <= 0)
-            {
-                return Eval(gameManager.GetCells());
-            }
-            else
-            {
-                int bestScore = int.MaxValue;
-                var availableMoves = gameManager.GetAvailableCells();
-                if (availableMoves.Count == 0)
-                {
-                    List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
-                    gameManager.passedMovesCount += 1;
-                    gameManager.SwitchPlayer();
-                    int score = Max(depth - 1);
-                    if (score < bestScore)
-                    {
-                        bestScore = score;
-                    }
-                    gameManager.UndoMove(cellsBeforeMove);
-                }
-                else
-                {
-                    //Console.WriteLine(availableMoves.Count);
-                    foreach (var move in availableMoves)
-                    {
-                        List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
-                        gameManager.MakeMove(move);
-                        int score = Max(depth - 1, beta, alpha);
-                        bestScore = GetMin(score, bestScore);
-                        beta = GetMin(beta, bestScore);
-
-                        gameManager.UndoMove(cellsBeforeMove);
-
-                        if (beta <= alpha)
-                            return;
-                    }
-                }
-                return bestScore;
-            }
-        }
-
-        public int Max(int depth, int beta, int alpha)
-        {
-            //Console.WriteLine("In max");
-            //Console.WriteLine(depth);
-            if (gameManager.IsGameFinished())
-            {
-                bool isFirstPlayerWinner = gameManager.IsFirstPlayerWon();
-                if ((isFirst && isFirst) || (!isFirst && !isFirstPlayerWinner))
-                {
-                    return int.MaxValue;
-                }
-                return int.MinValue;
-            }
-            else if (depth <= 0)
-            {
-                return Eval(gameManager.GetCells());
-            }
-            else
-            {
-                int bestScore = int.MinValue;
-                var availableMoves = gameManager.GetAvailableCells();
-                if (availableMoves.Count == 0)
-                {
-                    List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
-                    gameManager.passedMovesCount += 1;
-                    gameManager.SwitchPlayer();
-                    int score = Max(depth - 1);
-                    if (score > bestScore)
-                    {
-                        bestScore = score;
-                    }
-                    gameManager.UndoMove(cellsBeforeMove);
-                }
-                else
-                {
-                    foreach (var move in availableMoves)
-                    {
-                        List<List<Cell>> cellsBeforeMove = MakeDeepCopy(gameManager.GetCells());
-                        gameManager.MakeMove(move);
-                        int score = Min(depth - 1, beta, alpha);
-                        if (score > bestScore)
-                        {
-                            bestScore = score;
-                        }
-                        gameManager.UndoMove(cellsBeforeMove);
-                    }
-                }
-                return bestScore;
-            }
-        }*/
+        
 
         public int Eval(List<List<Cell>> cells) {
             int score = 0;
