@@ -7,7 +7,6 @@ namespace ConsoleInput
 {
     public class AIPlayer
     {
-
         private List<char> firstLetters = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
         private List<char> secondLetters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8' };
         private bool isFirst;
@@ -16,10 +15,14 @@ namespace ConsoleInput
         // estimates for 1/4 of field
         //was got by many many(100 000) runs of code
         int[][] CellRate = new int[][]{
-            new int[]{251, -55, 10, 13},
-            new int[]{-55, -73,  -10, -3},
-            new int[]{10, -10,  -14, -2},
-            new int[]{13, -3,  -2, 0}
+            new int[]{500, -110, 20, 23, 22, 20, -110, 502},
+            new int[]{-109, -146,  -19, -6, -6, -20, -146, -111},
+            new int[]{19, -20,  -27, -4, -4, -28, -20, 20},
+            new int[]{25, -6,  -4, 0 , 0, -4, -5, 26},
+            new int[]{26, -7,  -4, 0 , 0, -4, -6, 27},
+            new int[]{21, -20,  -28, -4, -4, -28, -20, 19},
+            new int[]{-110, -146,  -20, -6, -6, -20, -146, -110},
+            new int[]{501, -110, 20, 24, 23, 20, -110, 501}
         };
 
         public AIPlayer(GameManager gameManager, bool isFirst)
@@ -224,25 +227,11 @@ namespace ConsoleInput
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (cells[i][j].State == playerColor) {
-                        score += CellRate[MapIndex(i)][MapIndex(j)];
+                        score += CellRate[i][j];
                     }
                 }
             }
             return score;
-        }
-
-        /// <summary>
-        /// Map index in CellRate 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        int MapIndex(int index)
-        {
-            if (index > 3)
-            {
-                return 7 - index;
-            }
-            return index;
         }
 
         private int GetMin(int firstValue, int secondValue)
