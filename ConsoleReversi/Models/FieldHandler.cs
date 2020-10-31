@@ -18,6 +18,14 @@ namespace Models
              new Tuple<int, int>(1, 0),
              new Tuple<int, int>(1, 1)
         };
+
+        /// <summary>
+        /// sets cell and updates field
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="coords"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         public static List<List<Cell>> SetCell(CellState playerColor, Tuple<int, int> coords, List<List<Cell>> cells)
         {
             List<List<Cell>> cellsCopy = new List<List<Cell>>(cells);
@@ -26,6 +34,13 @@ namespace Models
             return cellsCopy;
         }
 
+        /// <summary>
+        /// update field state and paint if needed
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="coords"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         private static List<List<Cell>> UpdateField(CellState playerColor, Tuple<int, int> coords, List<List<Cell>> cells)
         {
             List<List<Cell>> cellsCopy = new List<List<Cell>>(cells);
@@ -40,6 +55,16 @@ namespace Models
             return cellsCopy;
         }
 
+        /// <summary>
+        /// paint all cells in line
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="rowIndex"></param>
+        /// <param name="columnIndex"></param>
+        /// <param name="rowDiff"></param>
+        /// <param name="columnDiff"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         private static List<List<Cell>> PaintInLine(CellState playerColor, int rowIndex, int columnIndex, int rowDiff, int columnDiff, List<List<Cell>> cells)
         {
             List<List<Cell>> cellsCopy = new List<List<Cell>>(cells);
@@ -54,6 +79,11 @@ namespace Models
             return cellsCopy;
         }
 
+        /// <summary>
+        /// Gets oppposite color to it or default color (empty) 
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public static CellState GetOppositeColor(CellState color)
         {
             if (color == CellState.Black)
@@ -67,7 +97,13 @@ namespace Models
             return CellState.Empty;
         }
 
-        //returns collection of coordinates (row and column in cells)
+
+        /// <summary>
+        /// returns collection of coordinates (row and column in cells)
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         public static List<Tuple<int, int>> GetAvailableCells(CellState playerColor, List<List<Cell>> cells)
         {
             List<Tuple<int, int>> availableCells = new List<Tuple<int, int>>();
@@ -84,7 +120,12 @@ namespace Models
             }
             return availableCells;
         }
-
+        /// <summary>
+        /// counts score of player
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         public static int CountCells(CellState playerColor, List<List<Cell>> cells)
         {
             int count = 0;
@@ -99,6 +140,11 @@ namespace Models
             return count;
         }
 
+        /// <summary>
+        /// Checks is the field full (There is no empty cells)
+        /// </summary>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         public static bool isFull(List<List<Cell>> cells)
         {
             foreach (var row in cells)
@@ -112,6 +158,14 @@ namespace Models
             return true;
         }
 
+        /// <summary>
+        /// Checks is cell available for move
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="rowIndex"></param>
+        /// <param name="columnIndex"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         private static bool IsCellAvailable(CellState playerColor, int rowIndex, int columnIndex, List<List<Cell>> cells)
         {
             foreach (var direction in directions)
@@ -122,6 +176,16 @@ namespace Models
             return false;
         }
 
+        /// <summary>
+        /// Checks is cells in line like [empty][oposite]...[oposite][playerColor]
+        /// </summary>
+        /// <param name="playerColor"></param>
+        /// <param name="rowIndex"></param>
+        /// <param name="columnIndex"></param>
+        /// <param name="rowDiff"></param>
+        /// <param name="columnDiff"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         private static bool IsInLine(CellState playerColor, int rowIndex, int columnIndex, int rowDiff, int columnDiff, List<List<Cell>> cells)
         {
             rowIndex += rowDiff;
@@ -137,6 +201,13 @@ namespace Models
             return (IsCellInsideField(rowIndex, columnIndex, cells) && cells[rowIndex][columnIndex].State == playerColor && cellsInLine > 0);
         }
 
+        /// <summary>
+        /// Checks is this coorinates inside field
+        /// </summary>
+        /// <param name="rowIndex"></param>
+        /// <param name="columnIndex"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
         private static bool IsCellInsideField(int rowIndex, int columnIndex, List<List<Cell>> cells)
         {
             return (rowIndex >= 0 && columnIndex >= 0 && rowIndex < cells.Count && columnIndex < cells.Count);

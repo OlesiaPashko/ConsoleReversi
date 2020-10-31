@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ConsoleOutput
 {
+    //uses to debug program using console
     public class OutputManager
     {
         private List<List<Cell>> cells;

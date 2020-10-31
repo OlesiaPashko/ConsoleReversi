@@ -10,8 +10,7 @@ namespace ConsoleInput
     public class InputManager
     {
         private readonly GameManager gameManager;
-        private List<char> firstLetters = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
-        private List<char> secondLetters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8' };
+        
         public InputManager(GameManager gameManager)
         {
             this.gameManager = gameManager;
@@ -19,23 +18,29 @@ namespace ConsoleInput
 
         public void StartGame()
         {
-            Player player;
+            AIPlayer firstPlayer;
+            ConsolePlayer secondPlayer = new ConsolePlayer(gameManager);
+            //set black hole
             Tuple<int,int> blackHole = GetBlackHole();
+
+            //set players turn
             CellState color = GetColor();
             if (color == CellState.White)
             {
-                player = new Player(gameManager, false);
-                gameManager.StartGame(blackHole, MakeMove());
+                firstPlayer = new AIPlayer(gameManager, false);
+                gameManager.StartGame(blackHole, secondPlayer.MakeMove());
             }
             else
             {
-                player = new Player(gameManager, true);
+                firstPlayer = new AIPlayer(gameManager, true);
                 gameManager.StartGame(blackHole);
             }
+
+            //game loop
             while (true)
             {
-                player.MakeMove();
-                MakeMove();
+                firstPlayer.MakeMove();
+                secondPlayer.MakeMove();
             }
         }
 
@@ -58,47 +63,11 @@ namespace ConsoleInput
             return CellState.Black;
         }
 
-        public Tuple<int,int> MakeMove()
+        public static Tuple<int, int> ParseCoords(string coords)
         {
-            List<Tuple<int,int>> availableCells = gameManager.GetAvailableCells();
-            string move;
-            Tuple<int, int> moveCoords = new Tuple<int, int>(-1,-1);
-            do
-            {
-                move = Console.ReadLine();
-                move = move.Trim().ToLower();
-                if (!IsCorrectMove(move))
-                {
-                    if (move == "pass")
-                    {
-                        gameManager.SwitchPlayer();
-                        gameManager.passedMovesCount += 1;
-                        break;
-                    }
-                    continue;
-                }
-                moveCoords = ParseCoords(move);
-                if (availableCells.Contains(moveCoords))
-                {
-                    gameManager.MakeMove(moveCoords);
-                    break;
-                }
-            }
-            while (true);
-            
-            return moveCoords;
-        }
+            List<char> firstLetters = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
+            List<char> secondLetters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8' };
 
-
-        public bool IsCorrectMove(string move)
-        {
-            if (move.Length != 2)
-                return false;
-            return firstLetters.Contains(move[0]) && secondLetters.Contains(move[1]);
-        }
-
-        public Tuple<int,int> ParseCoords(string coords)
-        {
             coords = coords.ToLower().Trim();
             int column = firstLetters.FindIndex(x => x == coords[0]);
             int row = secondLetters.FindIndex(x => x == coords[1]);
