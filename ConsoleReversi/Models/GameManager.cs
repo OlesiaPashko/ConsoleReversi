@@ -7,7 +7,7 @@ namespace Models
     {
         private CellState firstPlayerColor = CellState.Black;
         private CellState secondPlayerColor = CellState.White;
-        private CellState currentPlayerColor;
+        public CellState currentPlayerColor;
         Field field;
         public int passedMovesCount = 0;
         public event Action<List<List<Cell>>> MoveMade;
@@ -47,7 +47,7 @@ namespace Models
 
         public bool IsGameFinished()
         {
-            return FieldHandler.isFull(field.Cells)||passedMovesCount == 2;
+            return FieldHandler.isFull(field.Cells)||passedMovesCount >= 2;
         }
 
         public bool IsFirstPlayerWon()
@@ -61,6 +61,7 @@ namespace Models
         {
             if (GetAvailableCells().Count == 0)
             {
+                //Console.WriteLine(" -------------- GameManager.MakeMove() PASS");
                 Pass();
             }
             else

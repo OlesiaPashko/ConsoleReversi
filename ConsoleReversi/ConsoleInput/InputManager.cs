@@ -1,4 +1,5 @@
 ﻿
+using ConsoleInput.Players;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ConsoleInput
 
         public void StartGame()
         {
-            AIPlayer firstPlayer;
+            AIMonteCarloPlayer firstPlayer;
             ConsolePlayer secondPlayer = new ConsolePlayer(gameManager);
             //set black hole
             Tuple<int,int> blackHole = GetBlackHole();
@@ -27,12 +28,12 @@ namespace ConsoleInput
             CellState color = GetColor();
             if (color == CellState.White)
             {
-                firstPlayer = new AIPlayer(gameManager, false);
+                firstPlayer = new AIMonteCarloPlayer(gameManager, false);
                 gameManager.StartGame(blackHole, secondPlayer.MakeMove());
             }
             else
             {
-                firstPlayer = new AIPlayer(gameManager, true);
+                firstPlayer = new AIMonteCarloPlayer(gameManager, true);
                 gameManager.StartGame(blackHole);
             }
 

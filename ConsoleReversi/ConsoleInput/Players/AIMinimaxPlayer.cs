@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleInput
 {
-    public class AIPlayer
+    public class AIMinimaxPlayer
     {
         private List<char> firstLetters = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
         private List<char> secondLetters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8' };
@@ -25,7 +25,7 @@ namespace ConsoleInput
             new int[]{501, -110, 20, 24, 23, 20, -110, 501}
         };
 
-        public AIPlayer(GameManager gameManager, bool isFirst)
+        public AIMinimaxPlayer(GameManager gameManager, bool isFirst)
         {
             this.gameManager = gameManager;
             this.isFirst = isFirst;
@@ -38,7 +38,7 @@ namespace ConsoleInput
         {
             List<Tuple<int, int>> availableCells = gameManager.GetAvailableCells();
 
-            //pass if there is no available moves
+            //pass if there are no available moves
             if (availableCells.Count == 0)
             {
                 gameManager.Pass();
