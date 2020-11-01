@@ -6,18 +6,10 @@ using System.Text;
 
 namespace ConsoleInput.Players
 {
-    public class AIMonteCarloPlayer
+    public class AIMonteCarloPlayer : AIPlayer
     {
-        private List<char> firstLetters = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
-        private List<char> secondLetters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8' };
-        private bool isFirst;
-        public GameManager gameManager;
-        public AIMonteCarloPlayer(GameManager gameManager, bool isFirst)
-        {
-            this.gameManager = gameManager;
-            this.isFirst = isFirst;
-        }
-
+        public AIMonteCarloPlayer(GameManager gameManager, bool isFirst) : base(gameManager, isFirst) { }
+        
         /// <summary>
         /// Make move using MonteCarlo
         /// </summary>
@@ -122,38 +114,7 @@ namespace ConsoleInput.Players
                 player2.MakeMoveWithoutMessage();
             }
             return (isFirst && gameManager.IsFirstPlayerWon()) || (!isFirst && !gameManager.IsFirstPlayerWon());
-        }
-
-        /// <summary>
-        /// Transform (0, 0) to A1
-        /// </summary>
-        /// <param name="coords"></param>
-        /// <returns></returns>
-        public string CoordsToString(Tuple<int, int> coords)
-        {
-            return firstLetters[coords.Item2].ToString() + secondLetters[coords.Item1];
-        }
-
-        /// <summary>
-        /// Makes deep copy of array of arrays
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        private List<List<Cell>> MakeDeepCopy(List<List<Cell>> list)
-        {
-            List<List<Cell>> copy = new List<List<Cell>>();
-            foreach (var row in list)
-            {
-                List<Cell> rowCopy = new List<Cell>();
-                foreach (var cell in row)
-                {
-                    Cell cellCopy = new Cell(cell.State);
-                    rowCopy.Add(cellCopy);
-                }
-                copy.Add(rowCopy);
-            }
-            return copy;
-        }        
+        }       
     
     }
 }

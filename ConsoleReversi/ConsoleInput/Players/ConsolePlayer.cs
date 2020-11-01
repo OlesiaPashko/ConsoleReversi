@@ -57,7 +57,11 @@ namespace ConsoleInput
             return moveCoords;
         }
 
-
+        /// <summary>
+        /// Checks is move correct
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
         public bool IsCorrectMove(string move)
         {
             if (move.Length != 2)

@@ -12,6 +12,9 @@ namespace ConsoleInput.Players
         {
             this.gameManager = gameManager;
         }
+        /// <summary>
+        /// Makes random move or passes without any messages in console
+        /// </summary>
         public void MakeMoveWithoutMessage()
         {
             List<Tuple<int, int>> availableCells = gameManager.GetAvailableCells();
@@ -20,14 +23,12 @@ namespace ConsoleInput.Players
             if (availableCells.Count == 0)
             {
 
-                //Console.WriteLine("Pass in RandomPlayer");
                 gameManager.PassWithoutMassage();
                 return;
             }
 
             Random random = new Random();
             var randomMove = availableCells[random.Next(availableCells.Count)];
-            //Console.WriteLine("------------In random player before move");
             gameManager.MakeMove(randomMove);
         }
     }

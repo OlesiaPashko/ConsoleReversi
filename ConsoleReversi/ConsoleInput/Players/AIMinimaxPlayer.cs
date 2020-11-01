@@ -1,16 +1,13 @@
-﻿using Models;
+﻿using ConsoleInput.Players;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleInput
 {
-    public class AIMinimaxPlayer
+    public class AIMinimaxPlayer:AIPlayer
     {
-        private List<char> firstLetters = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
-        private List<char> secondLetters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8' };
-        private bool isFirst;
-        public GameManager gameManager;
 
         // estimates for 1/4 of field
         //was got by many many(100 000) runs of code
@@ -25,11 +22,7 @@ namespace ConsoleInput
             new int[]{501, -110, 20, 24, 23, 20, -110, 501}
         };
 
-        public AIMinimaxPlayer(GameManager gameManager, bool isFirst)
-        {
-            this.gameManager = gameManager;
-            this.isFirst = isFirst;
-        }
+        public AIMinimaxPlayer(GameManager gameManager, bool isFirst) : base(gameManager, isFirst) { }
 
         /// <summary>
         /// Make move using MiniMax
@@ -67,37 +60,6 @@ namespace ConsoleInput
             //make move
             Console.WriteLine(CoordsToString(bestMove));
             gameManager.MakeMove(bestMove);
-        }
-
-        /// <summary>
-        /// Transform (0, 0) to A1
-        /// </summary>
-        /// <param name="coords"></param>
-        /// <returns></returns>
-        public string CoordsToString(Tuple<int, int> coords)
-        {
-            return firstLetters[coords.Item2].ToString() + secondLetters[coords.Item1];
-        }
-
-        /// <summary>
-        /// Makes deep copy of array of arrays
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        private List<List<Cell>> MakeDeepCopy(List<List<Cell>> list)
-        {
-            List<List<Cell>> copy = new List<List<Cell>>();
-            foreach (var row in list)
-            {
-                List<Cell> rowCopy = new List<Cell>();
-                foreach (var cell in row)
-                {
-                    Cell cellCopy = new Cell(cell.State);
-                    rowCopy.Add(cellCopy);
-                }
-                copy.Add(rowCopy);
-            }
-            return copy;
         }
 
         /// <summary>
